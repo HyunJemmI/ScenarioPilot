@@ -1,11 +1,11 @@
 :root {
   font-family:
-    Satoshi,
+    "Space Grotesk",
     "Neue Haas Grotesk Display",
     "Avenir Next",
     sans-serif;
-  color: #f4f4ef;
-  background: #050505;
+  color: #f4f0e8;
+  background: #040404;
 }
 
 * {
@@ -16,6 +16,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 button {
@@ -23,131 +24,220 @@ button {
 }
 
 .shell {
+  position: relative;
   min-height: 100vh;
-  padding: 28px;
+  padding: 26px;
+  overflow: hidden;
   background:
-    radial-gradient(circle at 14% 18%, rgba(126, 247, 197, 0.12), transparent 22%),
-    radial-gradient(circle at 80% 8%, rgba(128, 167, 255, 0.18), transparent 24%),
-    radial-gradient(circle at 70% 76%, rgba(255, 211, 126, 0.1), transparent 28%),
-    linear-gradient(180deg, #050505, #0b0d0c);
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px) 0 0 / 96px 96px,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 96px 96px,
+    radial-gradient(circle at 16% 82%, rgba(0, 240, 255, 0.2), transparent 28%),
+    radial-gradient(circle at 74% 16%, rgba(240, 68, 68, 0.25), transparent 28%),
+    linear-gradient(135deg, #050505 0%, #0a0b0d 42%, #020202 100%);
+}
+
+.shell::before,
+.shell::after,
+.fragment {
+  position: absolute;
+  pointer-events: none;
+  content: "";
+}
+
+.shell::before {
+  inset: 0;
+  background:
+    linear-gradient(110deg, transparent 0 34%, rgba(255, 255, 255, 0.07) 34.2% 35%, transparent 35.2% 100%),
+    linear-gradient(70deg, transparent 0 62%, rgba(240, 68, 68, 0.18) 62.2% 63%, transparent 63.2% 100%);
+  mix-blend-mode: screen;
+}
+
+.shell::after {
+  inset: 0;
+  background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 8px);
+  opacity: 0.45;
+}
+
+.fragment {
+  z-index: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(140deg, rgba(255, 255, 255, 0.08), transparent 50%),
+    linear-gradient(180deg, rgba(240, 68, 68, 0.12), rgba(0, 0, 0, 0.1));
+  filter: blur(0.2px);
+}
+
+.fragment-a {
+  top: 0;
+  left: 8%;
+  width: 28vw;
+  height: 52vh;
+  clip-path: polygon(0 0, 72% 0, 100% 100%, 16% 84%);
+}
+
+.fragment-b {
+  right: 0;
+  top: 9vh;
+  width: 34vw;
+  height: 38vh;
+  clip-path: polygon(16% 0, 100% 12%, 76% 100%, 0 74%);
+}
+
+.fragment-c {
+  left: 0;
+  bottom: -2vh;
+  width: 48vw;
+  height: 28vh;
+  clip-path: polygon(0 0, 92% 22%, 74% 100%, 0 100%);
+  background: linear-gradient(90deg, rgba(0, 240, 255, 0.2), rgba(240, 68, 68, 0.18), transparent);
 }
 
 .hero,
-.map-card,
-.ops-panel {
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 32px;
-  background: rgba(8, 10, 10, 0.76);
-  box-shadow: 0 28px 100px rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(20px);
+.control-panel,
+.workspace {
+  position: relative;
+  z-index: 1;
 }
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.78fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
   gap: 24px;
   align-items: end;
-  padding: 28px;
+  min-height: 280px;
+  padding: clamp(22px, 4vw, 54px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent 36%),
+    rgba(3, 3, 3, 0.72);
+  clip-path: polygon(0 0, 100% 0, 97% 86%, 72% 100%, 0 92%);
+  box-shadow: 0 40px 160px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(18px);
 }
 
 .eyebrow {
   margin: 0 0 10px;
-  color: rgba(130, 247, 197, 0.82);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.2em;
+  color: #f04444;
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
 }
 
 h1,
-h2 {
+h2,
+p {
   margin: 0;
-  letter-spacing: -0.06em;
-  line-height: 0.98;
 }
 
 h1 {
-  max-width: 12ch;
-  font-size: clamp(2.6rem, 6vw, 5.8rem);
+  max-width: 13ch;
+  font-size: clamp(3rem, 8vw, 8.2rem);
+  line-height: 0.82;
+  letter-spacing: -0.1em;
+  text-transform: uppercase;
 }
 
 h2 {
-  font-size: clamp(1.5rem, 2.2vw, 2.3rem);
+  font-size: clamp(1.6rem, 3.2vw, 3.8rem);
+  line-height: 0.88;
+  letter-spacing: -0.08em;
+  text-transform: uppercase;
 }
 
-.hero-copy {
-  max-width: 64ch;
-  margin: 18px 0 0;
-  color: rgba(244, 244, 239, 0.68);
-  font-size: 1rem;
+.hero-copy p:not(.eyebrow) {
+  max-width: 58ch;
+  margin-top: 22px;
+  color: rgba(244, 240, 232, 0.68);
   line-height: 1.8;
 }
 
-.hero-grid {
+.hero-stack {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 10px;
 }
 
 .metric,
-.pipeline-step,
-.vehicle-card {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.04);
+.map-card,
+.ops-panel,
+.vehicle-card,
+.objective-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(4, 4, 4, 0.72);
+  box-shadow: 0 22px 100px rgba(0, 0, 0, 0.44);
+  backdrop-filter: blur(20px);
 }
 
 .metric {
+  min-height: 112px;
   padding: 16px;
+  clip-path: polygon(0 0, 100% 0, 92% 100%, 0 86%);
 }
 
 .metric span,
-.pipeline-step span,
-.vehicle-card p {
-  color: rgba(244, 244, 239, 0.5);
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
+.vehicle-card p,
+.objective-card p {
+  color: rgba(244, 240, 232, 0.48);
+  font-size: 0.72rem;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
 .metric strong {
   display: block;
-  margin-top: 10px;
-  font-size: 1.32rem;
+  margin-top: 18px;
+  color: #fff;
+  font-size: clamp(1rem, 2vw, 1.7rem);
+  letter-spacing: -0.04em;
 }
 
 .control-panel {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   margin: 18px 0;
 }
 
 .control-panel button {
-  min-height: 44px;
-  padding: 0 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(244, 244, 239, 0.76);
+  min-height: 42px;
+  padding: 0 18px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(244, 240, 232, 0.64);
   cursor: pointer;
+  text-transform: uppercase;
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
 }
 
 .control-panel button.active {
-  border-color: rgba(130, 247, 197, 0.52);
-  background: rgba(130, 247, 197, 0.13);
-  color: rgba(228, 255, 244, 0.98);
+  border-color: rgba(240, 68, 68, 0.75);
+  background: #a20f16;
+  color: #fff;
 }
 
 .workspace {
   display: grid;
-  grid-template-columns: minmax(0, 1.48fr) minmax(340px, 0.72fr);
+  grid-template-columns: minmax(0, 1.56fr) minmax(320px, 0.58fr);
   gap: 18px;
 }
 
 .map-card,
 .ops-panel {
+  min-width: 0;
   padding: 22px;
+}
+
+.map-card {
+  clip-path: polygon(0 0, 100% 0, 100% 94%, 93% 100%, 0 100%);
+}
+
+.ops-panel {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  clip-path: polygon(0 0, 100% 8%, 100% 100%, 0 92%);
 }
 
 .card-head {
@@ -155,103 +245,144 @@ h2 {
   justify-content: space-between;
   gap: 16px;
   align-items: flex-start;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .pill {
-  display: inline-flex;
-  align-items: center;
-  min-height: 34px;
-  padding: 0 12px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.07);
-  color: rgba(244, 244, 239, 0.7);
-  font-size: 0.8rem;
+  max-width: 300px;
+  padding: 10px 12px;
+  background: #a20f16;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.35;
+  text-transform: uppercase;
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+}
+
+.map-stage {
+  padding: 28px;
+  overflow: hidden;
+  perspective: 980px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03), transparent 28%),
+    radial-gradient(circle at 52% 46%, rgba(0, 240, 255, 0.12), transparent 30%),
+    #030303;
 }
 
 .map {
+  display: block;
   width: 100%;
   height: auto;
-  display: block;
-  border-radius: 26px;
+  min-height: 560px;
+  transform: rotateX(54deg) rotateZ(-8deg) translateY(-42px);
+  transform-origin: center;
+  overflow: visible;
 }
 
-.road {
-  stroke: rgba(255, 255, 255, 0.12);
-  stroke-width: 10;
+.city-grid line {
+  stroke: rgba(255, 255, 255, 0.055);
+  stroke-width: 1;
+}
+
+.roads-base path {
+  fill: none;
+  stroke: url(#street-body);
+  stroke-width: 24;
   stroke-linecap: round;
 }
 
-.demand-node {
-  fill: #111;
-  stroke: rgba(255, 211, 126, 0.92);
-  stroke-width: 3;
+.roads-traffic path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 32 18;
+  animation: road-pulse 2.8s linear infinite;
+}
+
+.routes .route {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 11 13;
+  opacity: 0.68;
+}
+
+.routes .rerouted {
+  stroke-width: 6;
+  opacity: 0.92;
 }
 
 .depot {
-  fill: rgba(130, 247, 197, 0.2);
-  stroke: rgba(130, 247, 197, 0.85);
+  fill: #f04444;
+  stroke: rgba(255, 255, 255, 0.9);
   stroke-width: 2;
 }
 
+.demand-node {
+  fill: #050505;
+  stroke: #fff;
+  stroke-width: 3;
+}
+
+.junction {
+  fill: rgba(255, 255, 255, 0.46);
+}
+
 .map-label,
-.map-meta,
 .vehicle-label {
   font-family: inherit;
-  fill: rgba(244, 244, 239, 0.86);
-}
-
-.map-label,
-.vehicle-label {
+  fill: rgba(255, 255, 255, 0.92);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 900;
+  paint-order: stroke;
+  stroke: rgba(0, 0, 0, 0.9);
+  stroke-width: 4px;
+  text-transform: uppercase;
 }
 
-.map-meta {
-  font-size: 11px;
-  fill: rgba(244, 244, 239, 0.56);
+.vehicles rect {
+  stroke: rgba(255, 255, 255, 0.96);
+  stroke-width: 1;
+  filter: drop-shadow(0 0 10px currentColor);
 }
 
-.ops-panel {
-  display: grid;
-  align-content: start;
-  gap: 12px;
+.panel-copy {
+  color: rgba(244, 240, 232, 0.64);
+  line-height: 1.7;
 }
 
-.pipeline-step {
-  display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: 14px;
-  padding: 16px;
+.legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: rgba(244, 240, 232, 0.58);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-.pipeline-step span {
-  display: grid;
-  place-items: center;
-  height: 42px;
-  border-radius: 16px;
-  background: rgba(130, 247, 197, 0.12);
-  color: rgba(130, 247, 197, 0.9);
+.legend span {
+  width: 28px;
+  height: 8px;
+  display: inline-block;
 }
 
-.pipeline-step strong {
-  display: block;
-  margin-bottom: 8px;
+.legend .calm {
+  background: #52ffe0;
 }
 
-.pipeline-step p,
-.vehicle-card p {
-  margin: 0;
-  color: rgba(244, 244, 239, 0.62);
-  line-height: 1.65;
-  text-transform: none;
-  letter-spacing: 0;
+.legend .warn {
+  background: #ffb74a;
+}
+
+.legend .hot {
+  background: #f04444;
 }
 
 .vehicle-list {
   display: grid;
   gap: 10px;
-  margin-top: 4px;
 }
 
 .vehicle-card {
@@ -260,43 +391,73 @@ h2 {
   gap: 12px;
   align-items: center;
   padding: 14px;
+  clip-path: polygon(0 0, 100% 0, 96% 100%, 0 90%);
 }
 
 .vehicle-card span {
+  grid-row: span 2;
   width: 12px;
-  height: 36px;
-  border-radius: 999px;
+  height: 42px;
 }
 
-.vehicle-card strong,
-.vehicle-card p {
-  grid-column: 2;
+.vehicle-card strong {
+  font-size: 1.02rem;
 }
 
-@media (max-width: 1100px) {
+.objective-card {
+  padding: 18px;
+  background: linear-gradient(120deg, rgba(240, 68, 68, 0.28), rgba(255, 255, 255, 0.04));
+}
+
+.objective-card strong {
+  display: block;
+  font-size: clamp(2.2rem, 5vw, 4.8rem);
+  line-height: 0.9;
+  letter-spacing: -0.08em;
+}
+
+@keyframes road-pulse {
+  to {
+    stroke-dashoffset: -50;
+  }
+}
+
+@media (max-width: 1120px) {
   .hero,
   .workspace {
     grid-template-columns: 1fr;
+  }
+
+  .map {
+    min-height: 420px;
+    transform: rotateX(46deg) rotateZ(-7deg) translateY(-18px);
   }
 }
 
 @media (max-width: 720px) {
   .shell {
-    padding: 16px;
+    padding: 14px;
   }
 
   .hero,
   .map-card,
   .ops-panel {
-    padding: 18px;
-    border-radius: 24px;
+    clip-path: none;
   }
 
-  .hero-grid {
+  .hero-stack {
     grid-template-columns: 1fr;
   }
 
   .card-head {
     flex-direction: column;
+  }
+
+  .map-stage {
+    padding: 10px;
+  }
+
+  .map {
+    min-height: 360px;
   }
 }
