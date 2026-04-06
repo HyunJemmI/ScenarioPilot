@@ -1,0 +1,1 @@
+"""ScenarioPilot FastAPI service package."""

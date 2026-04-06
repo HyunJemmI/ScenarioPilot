@@ -1,0 +1,14 @@
+{
+  "name": "scenario-pilot",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Diffusion-driven fleet optimization simulator for scenario generation, routing, and RL re-decision.",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:dashboard": "npm run dev --workspace @scenariopilot/dashboard",
+    "build:dashboard": "npm run build --workspace @scenariopilot/dashboard",
+    "preview:dashboard": "npm run preview --workspace @scenariopilot/dashboard"
+  }
+}
